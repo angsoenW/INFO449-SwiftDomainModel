@@ -27,11 +27,23 @@ class PersonTests: XCTestCase {
         mike.spouse = Person(firstName: "Bambi", lastName: "Jones", age: 42)
         XCTAssert(mike.spouse != nil)
     }
+    
+    func testSingleNamePerson() {
+        let beyonce = Person(firstName: "Beyoncé", age: 39)
+        XCTAssert(beyonce.lastName == nil, "Beyoncé should not have a last name.")
+        XCTAssert(beyonce.toString().contains("Beyoncé"), "toString method should correctly handle single name persons.")
+        
+        let bono = Person(firstName: "Bono", age: 60)
+        XCTAssert(bono.lastName == nil, "Bono should not have a last name.")
+        XCTAssert(bono.toString().contains("Bono"), "toString method should correctly handle single name persons.")
+    }
+    
 
     static var allTests = [
         ("testPerson", testPerson),
         ("testAgeRestrictions", testAgeRestrictions),
         ("testAdultAgeRestrictions", testAdultAgeRestrictions),
+        ("testSingleNamePerson", testSingleNamePerson),
     ]
 }
 
@@ -67,7 +79,7 @@ class FamilyTests : XCTestCase {
         let familyIncome = family.householdIncome()
         XCTAssert(familyIncome == 12000)
     }
-  
+    
     static var allTests = [
         ("testFamily", testFamily),
         ("testFamilyWithKids", testFamilyWithKids),
